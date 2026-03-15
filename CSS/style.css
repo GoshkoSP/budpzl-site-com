@@ -1,0 +1,555 @@
+/* ===== Базовые сбросы и переменные ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Основные цвета */
+    --primary: #eb4d4b;
+    --secondary: #409de9;
+    --red: #eb4d4b;
+    --dark-blue: #286ea7;
+    --blue: #409de9;
+    --black-blue: #113553;
+    
+    /* Акцент (заменили золото на оранжевый) */
+    --primary-accent: #E67E22;
+    --primary-accent-light: #F39C12;
+    --secondary-accent: #D35400;
+    
+    /* Нейтральные (серый заменён на slate) */
+    --white: #ffffff;
+    --light-bg: #fafafa;
+    --dark: #2d2d2d;
+    --slate: #4a5b6e;           /* вместо #666 */
+    --light-slate: #e1e8ed;     /* вместо #f0f0f0 */
+    --border: #eaeaea;
+    --text: #333;
+    --text-light: #4a5b6e;
+    
+    /* Эффекты */
+    --shadow: 0 4px 12px rgba(0,0,0,0.1);
+    --shadow-hover: 0 8px 25px rgba(0,0,0,0.15);
+    --transition: all 0.3s ease;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: var(--light-bg);
+    color: var(--dark-blue);
+    line-height: 1.5;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ===== Шапка ===== */
+.header {
+    background: linear-gradient(135deg, var(--dark-blue) 0%, var(--dark) 100%);
+    color: var(--white);
+    padding: 40px 0;
+    text-align: center;
+    border-bottom: 4px solid var(--primary-accent-light);
+}
+
+.logo svg,
+.logo img {
+    width: 180px;
+    height: 160px;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+}
+
+.company-name {
+    font-size: 28px;
+    font-weight: 800;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #fff 0%, var(--primary-accent-light) 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 20px;
+}
+
+.contacts {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.contacts i {
+    color: var(--primary-accent);
+    margin-right: 8px;
+}
+
+.contacts a {
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.contacts a:hover {
+    color: var(--primary-accent-light);
+}
+
+/* ===== Перемикач мов ===== */
+.lang-switcher {
+    margin: 10px 0 20px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.lang-switcher a {
+    color: var(--white);
+    text-decoration: none;
+    padding: 4px 10px;
+    border-radius: 20px;
+    transition: all 0.3s;
+    opacity: 0.8;
+}
+
+.lang-switcher a:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.lang-switcher .lang-separator {
+    opacity: 0.5;
+}
+
+/* Підсвітка поточної мови (буде додаватися окремо в HTML кожної версії) */
+.lang-switcher a.active {
+    background: var(--primary-accent-light);
+    color: var(--black-blue);
+    opacity: 1;
+    font-weight: 700;
+}
+
+/* ===== Сетка услуг ===== */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin: 50px 0;
+}
+
+.service-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 1.8rem 1.2rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+    border: 1px solid rgba(0,0,0,0.03);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-accent), var(--primary-accent-light));
+    transform: scaleX(0);
+    transition: transform 0.3s;
+}
+
+.service-card:hover::before {
+    transform: scaleX(1);
+}
+
+.service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 30px rgba(0,0,0,0.12);
+}
+
+.service-icon {
+    font-size: 40px;
+    color: var(--primary-accent-light);
+    margin-bottom: 15px;
+}
+
+.service-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--black-blue);
+}
+
+.service-card p {
+    color: var(--slate);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+/* ===== Широкие карточки ===== */
+.full-width-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 30px;
+    margin-bottom: 25px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+.full-width-card:hover {
+    box-shadow: var(--shadow-hover);
+}
+
+.card-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: var(--black-blue);
+    position: relative;
+    padding-left: 15px;
+}
+
+.card-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 5px;
+    bottom: 5px;
+    width: 4px;
+    background: var(--primary-accent);
+    border-radius: 2px;
+}
+
+.card-text {
+    font-size: 18px;
+    color: #444;
+    margin-bottom: 15px;
+}
+
+.card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.tag {
+    background: var(--light-slate);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 14px;
+    color: var(--black-blue);
+    font-weight: 500;
+}
+
+/* ===== Кнопка с бликом ===== */
+.main-site-btn {
+    display: block;
+    width: 100%;
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 1.2rem 3.2rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    outline: none;
+    cursor: pointer;
+    position: relative;
+    background: linear-gradient(
+        110deg,
+        #286ea7 45%,
+        #ffd700 50%,
+        #113553 55%
+    );
+    background-size: 400% 100%;
+    animation: shine-animation 7s linear infinite;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.main-site-btn:hover {
+    border-color: rgba(255, 215, 0, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.5),
+                0 0 15px rgba(255, 215, 0, 0.5);
+}
+
+.main-site-btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+@keyframes shine-animation {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* ===== Блок под кнопкой (прямая ссылка) ===== */
+.main-site-link {
+    text-align: center;
+    margin: 20px auto 30px;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--primary-accent-light);
+}
+
+.main-site-link span {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 20px;
+    color: var(--black-blue);
+}
+
+.main-site-link a {
+    color: var(--primary-accent-light);
+    text-decoration: none;
+    font-weight: 600;
+    word-break: break-word;
+    transition: color 0.3s;
+}
+
+.main-site-link a:hover {
+    color: var(--primary-accent);
+    text-decoration: underline;
+}
+
+/* ===== Мессенджеры ===== */
+.messengers-container {
+    margin: 50px auto 30px;
+    text-align: center;
+    max-width: 600px;
+}
+
+.messengers-container h3 {
+    margin-bottom: 25px;
+    color: var(--black-blue);
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.messengers-wrapper {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.messenger-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    width: 120px;
+    padding: 20px 15px;
+    border-radius: 10px;
+    transition: var(--transition);
+    background: var(--white);
+    box-shadow: var(--shadow);
+    border: 2px solid transparent;
+}
+
+.messenger-link:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--primary-accent-light);
+}
+
+.messenger-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    font-size: 28px;
+    color: white;
+    transition: var(--transition);
+}
+
+.messenger-link span {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--black-blue);
+}
+
+.telegram .messenger-icon {
+    background: linear-gradient(135deg, #34AADF, #2A96D6);
+}
+
+.whatsapp .messenger-icon {
+    background: linear-gradient(135deg, #25D366, #128C7E);
+}
+
+.viber .messenger-icon {
+    background: linear-gradient(135deg, #7360F2, #5B49EA);
+}
+
+/* ===== Преимущества (Коротко о нас) ===== */
+.benefits-card {
+    background: linear-gradient(135deg, var(--white) 0%, #f5f5f5 100%);
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.benefit-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
+
+.benefit-item i {
+    font-size: 32px;
+    color: var(--primary-accent-light);
+    min-width: 40px;
+    text-align: center;
+}
+
+.benefit-item h4 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--black-blue);
+    margin-bottom: 5px;
+}
+
+.benefit-item p {
+    font-size: 15px;
+    color: var(--slate);
+    line-height: 1.5;
+}
+
+/* ===== Футер ===== */
+.footer {
+    background: var(--black-blue);
+    color: var(--white);
+    padding: 30px 0;
+    text-align: center;
+    margin-top: 50px;
+    border-top: 4px solid var(--primary-accent-light);
+}
+
+.footer p {
+    color: #ccc;
+}
+
+.footer-tags {
+    margin-top: 10px;
+    font-size: 15px;
+    color: #ccc;
+}
+
+/* ===== Адаптивность (оптимизировано) ===== */
+@media (max-width: 768px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .contacts {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .company-name {
+        font-size: 22px;
+    }
+
+    .card-title {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .services-grid {
+        gap: 12px;
+    }
+    .service-card {
+        padding: 1.2rem 0.8rem;
+    }
+    .service-card h3 {
+        font-size: 17px;
+    }
+    .service-card p {
+        font-size: 13px;
+    }
+
+    .benefits-grid {
+        gap: 15px;
+    }
+    .benefit-item h4 {
+        font-size: 17px;
+    }
+    .benefit-item p {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 550px) {
+    .messengers-wrapper {
+        gap: 10px;
+    }
+    .messenger-link {
+        width: 90px;
+        padding: 12px 8px;
+    }
+    .messenger-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 480px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .full-width-card {
+        padding: 20px;
+    }
+
+    .main-site-btn {
+        font-size: 18px;
+        padding: 15px 25px;
+    }
+
+    .benefits-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .messenger-link span {
+        font-size: 0.85rem;
+    }
+    
+    .main-site-link a {
+        font-size: 14px;
+    }
+}
